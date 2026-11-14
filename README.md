@@ -69,3 +69,7 @@ To move the Dock to another screen on purpose without pausing, hold **Control + 
 - Works with the Dock at the **bottom** of the screen. A Dock on the left or right side is not handled.
 - The Dock stays on the display that has the menu bar. To change which display that is, drag the menu bar in **System Settings > Displays > Arrange**.
 - Each rebuild or new version gets a new code signature, so macOS asks for Accessibility permission again. Remove the old DockKeeper entry and allow the new one.
+
+## License
+
+MIT. Free to use, copy, change, and share. See [LICENSE](LICENSE).
