@@ -9,12 +9,13 @@ If you use more than one display, macOS moves the Dock to whichever screen you p
 - Hold **Control + Option** while pushing down if you want to move the Dock on purpose
 - Picks up display changes automatically (plugging in, unplugging, rearranging)
 - Nothing in the system is modified and nothing is injected into the Dock
+- Built-in safety shutoff: if it ever falls behind on mouse events, it turns itself off instead of slowing your mouse
 
 ## How it works
 
 macOS moves the Dock when the cursor hits the bottom edge of another display and keeps pushing. DockKeeper watches mouse movement and holds the cursor 2 points above the bottom edge of every display except the main one. The Dock never sees the trigger. If another display sits directly below, that edge is left open so you can still move between the screens.
 
-All of it is in one file, `main.swift`, under 200 lines, so anyone can read exactly what it does.
+All of it is in one file, `main.swift`, about 250 lines, so anyone can read exactly what it does.
 
 ## Install
 
@@ -74,6 +75,10 @@ To move the Dock to another screen on purpose without pausing, hold **Control + 
 - Or: go to **System Settings > Privacy & Security**, scroll all the way to the bottom (below the permission list), click **Open Anyway** next to the DockKeeper message, enter your password, and click **Open Anyway** again.
 
 **"Open Anyway" does not appear.** Try opening the app once first, then look in Privacy & Security again. The button only shows up after macOS has blocked the app at least once. The Terminal command above always works.
+
+**The menu bar icon is a warning triangle that says "Stopped for safety."** macOS reported DockKeeper falling behind on mouse events several times, so it switched itself off rather than risk slowing your mouse. Everything works normally, the Dock just is not locked. Quit and reopen DockKeeper to try again. If it keeps happening, please open an issue on GitHub with your Mac model, macOS version, and display setup.
+
+**The mouse freezes and you cannot click anything.** Hold **Control + Option** and move the mouse, which tells DockKeeper to let everything through. If that does not help, press **Command + Space**, open Terminal, and run `pkill -9 -f DockKeeper.app`. Your other apps are not affected.
 
 **The Dock is already on the wrong screen.** Pause DockKeeper, move the cursor to the bottom of the screen with the menu bar until the Dock moves back, then turn Pause off.
 
