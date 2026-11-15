@@ -22,7 +22,13 @@ All of it is in one file, `main.swift`, under 200 lines, so anyone can read exac
 
 1. Download `DockKeeper.zip` from the [Releases](../../releases) page and unzip it.
 2. Move `DockKeeper.app` to your Applications folder.
-3. Open it. macOS will block it the first time because it is not signed with a paid Apple developer certificate. Go to **System Settings > Privacy & Security**, scroll down, and click **Open Anyway**.
+3. Open it. macOS will block it the first time because it is not signed with a paid Apple developer certificate. The quickest way past that is to paste this into Terminal:
+
+   ```sh
+   xattr -dr com.apple.quarantine /Applications/DockKeeper.app && open /Applications/DockKeeper.app
+   ```
+
+   Or go to **System Settings > Privacy & Security**, scroll to the very bottom, and click **Open Anyway**. See Troubleshooting below.
 4. When asked, allow DockKeeper under **System Settings > Privacy & Security > Accessibility**. It starts working within a couple of seconds.
 5. Click the lock icon in the menu bar and turn on **Launch at Login**.
 
@@ -57,7 +63,17 @@ To move the Dock to another screen on purpose without pausing, hold **Control + 
 
 **The Dock still jumps.** Check that the menu bar icon is a closed lock. If the menu says it needs permission, click that line and turn DockKeeper on in the Accessibility list. If it is already on but still not working, remove it from the list with the minus button, add it again, and restart DockKeeper.
 
-**"Open Anyway" does not appear.** Try opening the app once first, then look in Privacy & Security again. The button only shows up after macOS has blocked the app at least once.
+**"DockKeeper Not Opened: Apple could not verify..."** This is macOS blocking an app that is not signed with a paid Apple developer certificate. It is separate from the Accessibility permission. Click **Done**, then pick one fix:
+
+- Easiest: paste this into Terminal (assumes the app is in Applications):
+
+  ```sh
+  xattr -dr com.apple.quarantine /Applications/DockKeeper.app && open /Applications/DockKeeper.app
+  ```
+
+- Or: go to **System Settings > Privacy & Security**, scroll all the way to the bottom (below the permission list), click **Open Anyway** next to the DockKeeper message, enter your password, and click **Open Anyway** again.
+
+**"Open Anyway" does not appear.** Try opening the app once first, then look in Privacy & Security again. The button only shows up after macOS has blocked the app at least once. The Terminal command above always works.
 
 **The Dock is already on the wrong screen.** Pause DockKeeper, move the cursor to the bottom of the screen with the menu bar until the Dock moves back, then turn Pause off.
 
